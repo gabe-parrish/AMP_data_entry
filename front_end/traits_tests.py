@@ -16,8 +16,6 @@
 
 # ============= standard library imports ========================
 import os
-# os.environ['QT_API'] = 'pyqt5'
-os.environ['ETS_TOOLKIT'] = 'wx'
 
 from traitsui.toolkit import *
 
@@ -27,22 +25,22 @@ from traits.api import HasTraits, Int, Str, Property
 # from traitsui.api import *
 from subprocess import call
 
-"""if you have trouble with the toolkit you need to check it in the terminal. this can be done in terminal in the current env: $ export ETS_TOOLKIT=qt4"""
+"""if you have trouble with the toolkit you need to check it in the terminal. this can be done in terminal in
+the current env:
+ python
+ import os
+ os.environ[ETS_TOOLKIT]
+
+ if set to null or wx change it in the script globally by doing ETSConfig.toolkit = 'qt4'
+"""
 
 # ============= local library imports ===========================
 
-print(os.environ)
-# print(ETSConfig.toolkit)
-# ETSConfig.toolkit = 'qt4'
-os.environ['ETS_TOOLKIT'] = 'wx'
-# call('export ETS_TOOLKIT=qt4', shell=True)
-print(os.environ)
-
-# os.environ['ETS_TOOLKIT'] = 'qt4'
+ETSConfig.toolkit = 'qt4'
 class Calculator(HasTraits):
-
-    # toolkit('qt4')
-
+    """
+    Takes values 1 and 2. Sums the values and displays it in a GUI
+    """
     value1 = Int()
     value2 = Int()
 
@@ -54,14 +52,9 @@ class Calculator(HasTraits):
 
 def main():
     """Tests traits"""
-    # print(os.environ['ETS_TOOLKIT'])
-    print("toolkit i'm trying to use", ETSConfig.toolkit)
-    # ETSConfig.toolkit = 'wx'
-    # sys.environment("export ETS_TOOLKIT=qt4", shell=True)
-    # ETSConfig.enable_toolkit
-    Calculator().configure_traits()
 
-    # calc.configure_traits()
+    print("toolkit i'm trying to use", ETSConfig.toolkit)
+    Calculator().configure_traits()
 
 if __name__ == "__main__":
     main()
